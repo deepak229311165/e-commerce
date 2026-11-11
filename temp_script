@@ -1,0 +1,12 @@
+import hashlib
+import hmac
+
+
+order_id = "order_TtJnDdmfLQO2xE"      # Replace with the razorpay_order_id from /create-order
+payment_id = "pay_TEST1234567890"       # Can be any dummy string starting with pay_
+secret = "iECdQUGAZINHZvo3cGCn4OIp" # Your actual secret from settings/env
+
+message = f"{order_id}|{payment_id}".encode()
+signature = hmac.new(secret.encode(), message, hashlib.sha256).hexdigest()
+
+print("Signature:", signature)
